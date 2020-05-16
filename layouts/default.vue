@@ -147,7 +147,7 @@ export default {
     dialog: false,
     drawer: null,
     items: [
-      { icon: ['fas', 'asterisk'], text: 'Día a día', path: '/dia-a-dia' },
+      { icon: ['fas', 'cube'], text: 'Propiedades', path: '/propiedades' },
     ],
     footerItems: [
       {
@@ -206,3 +206,19 @@ export default {
   },
 }
 </script>
+
+<style>
+/* SCROLL THEME */
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background: #6C8894;
+}
+</style>
