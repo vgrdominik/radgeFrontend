@@ -2,6 +2,7 @@
   <v-app id="inspire">
     <v-navigation-drawer
       v-model="drawer"
+      v-if="user"
       :clipped="$vuetify.breakpoint.lgAndUp"
       app
     >
@@ -70,23 +71,17 @@
       dark
       color="primary"
     >
-      <CtBtn type="icon" :icon="['fas', 'chevron-left']" @click="$router.go(-1)" class="mr-3" />
-
-      <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
+      <v-app-bar-nav-icon @click.stop="drawer = !drawer" v-if="user" />
       <v-toolbar-title
         style="width: 300px"
         class="ml-0 pl-4"
       >
-        <CtBtn type="text" color="white" to="/">Videojuego Radge</CtBtn>
+        <CtBtn type="text" color="white" @click="$router.push('/')">Videojuego Radge</CtBtn>
       </v-toolbar-title>
       <v-spacer />
 
       <CtBtn type="text" color="white" href="https://valentigamez.com">
         Sobre mi
-      </CtBtn>
-      |
-      <CtBtn type="text" color="white" href="http://blog.valentigamez.com">
-        Blog
       </CtBtn>
       |
       <template v-if="user">
@@ -95,15 +90,15 @@
         </CtBtn>
       </template>
       <template v-else>
-        <CtBtn type="text" color="white" to="/login">
+        <CtBtn type="text" color="white" @click="$router.push('login')">
           Login
         </CtBtn>
         |
-        <CtBtn type="text" color="white" to="/registro">
+        <CtBtn type="text" color="white" @click="$router.push('registro')">
           Registro gratuito
         </CtBtn>
       </template>
-      <CtBtn type="icon" :icon="['fas', 'bell']" to="/notificaciones" />
+      <CtBtn type="icon" :icon="['fas', 'bell']" @click="$router.push('notificaciones')" v-if="user" />
     </v-app-bar>
     <v-content>
       <v-container
