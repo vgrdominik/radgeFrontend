@@ -20,7 +20,7 @@
             Posición (<span v-html=" nodeItem.translation_x" />, <span v-html=" nodeItem.translation_y" />, <span v-html=" nodeItem.translation_z" />)<br>
             Rotación (<span v-html=" nodeItem.rotation_x" />, <span v-html=" nodeItem.rotation_y" />, <span v-html=" nodeItem.rotation_z" />)<br>
             Tamaño (<span v-html=" nodeItem.scale_x" />, <span v-html=" nodeItem.scale_y" />, <span v-html=" nodeItem.scale_z" />)<br>
-            Fichero: <span v-html=" nodeItem.scene" /><br>
+            Fichero: <span v-html=" nodeItem.blueprint.scene" /><br>
             <span v-html=" nodeItem.details" />
           </v-container>
         </v-card>
@@ -45,7 +45,7 @@
               <CtTextarea append-icon="mdi-subject" label="Detalles" v-model="node.details"/>
             </v-col>
             <v-col cols="12">
-              <CtTextField append-icon="mdi-chevron-right" label="Fichero" v-model="node.scene"/>
+              <v-select :items="blueprints" item-text="scene" item-value="id" append-icon="mdi-chevron-right" label="Fichero" v-model="node.blueprint_id"/>
             </v-col>
             <v-col cols="12">
               <CtTextField type="number" append-icon="mdi-location_search" label="Posición X" v-model="node.translation_x"/>
@@ -96,6 +96,7 @@ export default {
   data() {
     return {
       nodes: [],
+      blueprints: [],
       node: {
         description: '',
         details: '',
@@ -125,6 +126,7 @@ export default {
 
   mounted() {
     this.fetch()
+    this.fetchBlueprint()
     this.node.creator_id = this.$store.state.user.user.id
   },
 
@@ -135,7 +137,7 @@ export default {
       this.nodeId = null
       this.node.description = ''
       this.node.details = ''
-      this.node.scene = ''
+      this.node.blueprint_id = null
       this.node.translation_x = 0
       this.node.translation_y = 0
       this.node.translation_z = 0
@@ -208,6 +210,12 @@ export default {
     fetch() {
       this.$axios.get('/api/node')
         .then((response) => (response.data) ? this.nodes = response.data : '')
+        .catch((error) => (error.response && error.response.data && error.response.data.message) ? this.setServerMessage(error.response.data.message) : this.setServerMessage('Error list nodes.'))
+    },
+
+    fetchBlueprint() {
+      this.$axios.get('/api/blueprint')
+        .then((response) => (response.data) ? this.blueprints = response.data : '')
         .catch((error) => (error.response && error.response.data && error.response.data.message) ? this.setServerMessage(error.response.data.message) : this.setServerMessage('Error list nodes.'))
     },
 
