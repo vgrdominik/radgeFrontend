@@ -20,7 +20,8 @@
             Posición (<span v-html=" nodeItem.translation_x" />, <span v-html=" nodeItem.translation_y" />, <span v-html=" nodeItem.translation_z" />)<br>
             Rotación (<span v-html=" nodeItem.rotation_x" />, <span v-html=" nodeItem.rotation_y" />, <span v-html=" nodeItem.rotation_z" />)<br>
             Tamaño (<span v-html=" nodeItem.scale_x" />, <span v-html=" nodeItem.scale_y" />, <span v-html=" nodeItem.scale_z" />)<br>
-            Fichero: <span v-html=" nodeItem.blueprint.scene" /><br>
+            Plano: <span v-html=" nodeItem.blueprint.description" /><br>
+            Propietario: <span v-html=" nodeItem.owner.description" /><br>
             <span v-html=" nodeItem.details" />
           </v-container>
         </v-card>
@@ -45,7 +46,10 @@
               <CtTextarea append-icon="mdi-subject" label="Detalles" v-model="node.details"/>
             </v-col>
             <v-col cols="12">
-              <v-select :items="blueprints" item-text="scene" item-value="id" append-icon="mdi-chevron-right" label="Fichero" v-model="node.blueprint_id"/>
+              <v-select :items="blueprints" item-text="description" item-value="id" append-icon="mdi-chevron-right" label="Plano" v-model="node.blueprint_id"/>
+            </v-col>
+            <v-col cols="12">
+              <v-select :items="users" item-text="name" item-value="id" append-icon="mdi-chevron-right" label="Propietario" v-model="node.owner_id"/>
             </v-col>
             <v-col cols="12">
               <CtTextField type="number" append-icon="mdi-location_search" label="Posición X" v-model="node.translation_x"/>
@@ -97,11 +101,13 @@ export default {
     return {
       nodes: [],
       blueprints: [],
+      users: [],
       node: {
         description: '',
         details: '',
         creator_id: null,
-        scene: '',
+        owner_id: null,
+        blueprint_id: null,
         translation_x: 0,
         translation_y: 0,
         translation_z: 0,
@@ -127,6 +133,7 @@ export default {
   mounted() {
     this.fetch()
     this.fetchBlueprint()
+    this.fetchUsers()
     this.node.creator_id = this.$store.state.user.user.id
   },
 
@@ -138,6 +145,7 @@ export default {
       this.node.description = ''
       this.node.details = ''
       this.node.blueprint_id = null
+      this.node.owner_id = null
       this.node.translation_x = 0
       this.node.translation_y = 0
       this.node.translation_z = 0
@@ -214,8 +222,14 @@ export default {
     },
 
     fetchBlueprint() {
-      this.$axios.get('/api/blueprint')
+      this.$axios.get('/api/getBlueprintToCraftUser')
         .then((response) => (response.data) ? this.blueprints = response.data : '')
+        .catch((error) => (error.response && error.response.data && error.response.data.message) ? this.setServerMessage(error.response.data.message) : this.setServerMessage('Error list nodes.'))
+    },
+
+    fetchUsers() {
+      this.$axios.get('/api/listUsers')
+        .then((response) => (response.data) ? this.users = response.data : '')
         .catch((error) => (error.response && error.response.data && error.response.data.message) ? this.setServerMessage(error.response.data.message) : this.setServerMessage('Error list nodes.'))
     },
 

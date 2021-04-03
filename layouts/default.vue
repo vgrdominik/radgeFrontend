@@ -143,6 +143,9 @@ export default {
     drawer: null,
     items: [
       { icon: ['fas', 'cube'], text: 'Propiedades', path: '/propiedades' },
+      { icon: ['fas', 'cube'], text: 'Planos crafteables', path: '/planosCrafteables' },
+      { icon: ['fas', 'cube'], text: 'Planos en propiedad', path: '/planos' },
+      { icon: ['fas', 'cube'], text: 'Cartera', path: '/wallet' },
     ],
     footerItems: [
       {
