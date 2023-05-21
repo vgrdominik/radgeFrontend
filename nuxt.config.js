@@ -13,6 +13,9 @@ export default {
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+    ],
+    script: [
+      { type: 'application/javascript', src: '/js/snap.svg-min.js' }
     ]
   },
   /*
@@ -84,7 +87,7 @@ export default {
   ** See https://axios.nuxtjs.org/options
   */
   axios: {
-    baseURL:  'http://api-radge.valentigamez.com',//'{BASE_URL_OF API}/', http://127.0.0.1:8000 | http://api-radge.valentigamez.com
+    baseURL:  'http://127.0.0.1:8000',//'{BASE_URL_OF API}/', http://127.0.0.1:8000 | http://api-radge.valentigamez.com
     credentials: true
   },
 

@@ -1,11 +1,11 @@
 <template>
-  <CtCard title="Propiedades" width="500" class="mx-auto">
+  <CtCard title="Propiedades" width="100%" min-height="100%" class="mx-auto">
     <template v-slot:rightTitleContent>
       <CtBtn type="icon" color="white" :icon="['fas', 'plus']" @click="addNode" />
     </template>
     <v-row dense>
       <v-col cols="12" v-if="serverMessage" v-html="serverMessage" class="error--text" />
-      <v-col cols="12" class="mt-5" v-for="nodeItem in nodes" :key=" nodeItem.id">
+      <v-col cols="3" class="mt-5" v-for="nodeItem in nodes" :key=" nodeItem.id">
         <v-card color="primary" dark>
           <v-toolbar flat color="primary">
             <CtBtn type="icon" color="white" :icon="['fas', 'edit']" @click="updateNode(nodeItem.id)" />

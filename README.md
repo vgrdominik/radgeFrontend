@@ -10,7 +10,7 @@ https://valentigamez.com
 
 ``` bash
 # install dependencies
-$ npm run install
+$ npm install
 
 # serve with hot reload at localhost:3000
 $ npm run dev
@@ -41,6 +41,6 @@ Si descubres algún fallo de seguridad lo puedes enviar a iam@valintigamez.com c
 
 ## Licencia
 
-Blog Frontend es un software open source bajo la licencia [MIT license](https://opensource.org/licenses/MIT).
+Radge Frontend es un software open source bajo la licencia [MIT license](https://opensource.org/licenses/MIT).
 
 NOTA: No existe versión enterprise. 

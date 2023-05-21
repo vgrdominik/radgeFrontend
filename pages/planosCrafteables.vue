@@ -1,11 +1,11 @@
 <template>
-  <CtCard title="Planos crafteables" width="500" class="mx-auto">
+  <CtCard title="Planos crafteables" width="100%" min-height="100%" class="mx-auto">
     <template v-slot:rightTitleContent>
       <CtBtn type="icon" color="white" :icon="['fas', 'plus']" @click="addBlueprint" />
     </template>
     <v-row dense>
       <v-col cols="12" v-if="serverMessage" v-html="serverMessage" class="error--text" />
-      <v-col cols="12" class="mt-5" v-for="blueprintItem in blueprintToCraftUsers" :key=" blueprintItem.id">
+      <v-col cols="3" class="mt-5" v-for="blueprintItem in blueprintToCraftUsers" :key=" blueprintItem.id">
         <v-card color="primary" dark>
           <v-toolbar flat color="primary">
             <v-spacer />

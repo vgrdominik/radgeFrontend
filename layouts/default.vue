@@ -80,7 +80,7 @@
       </v-toolbar-title>
       <v-spacer />
 
-      <CtBtn type="text" color="white" href="https://valentigamez.com">
+      <CtBtn type="text" color="white" href="https://valentigamez.com" target="_blank">
         Sobre mi
       </CtBtn>
       |
@@ -102,7 +102,6 @@
     </v-app-bar>
     <v-content>
       <v-container
-        class="fill-height"
         fluid
       >
         <nuxt />
@@ -113,10 +112,6 @@
       <CtCard type="empty" flat tile width="100%" class="primary white--text text-center">
         <v-card-text>
           <CtBtn v-for="footerItem in footerItems" :key="footerItem.title" type="icon" target="_blank" :title="footerItem.title" :href="footerItem.href" :icon="footerItem.icon" class="mx-4 white--text" />
-        </v-card-text>
-
-        <v-card-text class="white--text pt-0">
-          En la página se puede gestionar temas relacionados con el videojuego Radge.
         </v-card-text>
 
         <v-divider></v-divider>
@@ -142,17 +137,10 @@ export default {
     dialog: false,
     drawer: null,
     items: [
-      { icon: ['fas', 'cube'], text: 'Propiedades', path: '/propiedades' },
-      { icon: ['fas', 'cube'], text: 'Planos crafteables', path: '/planosCrafteables' },
-      { icon: ['fas', 'cube'], text: 'Planos en propiedad', path: '/planos' },
-      { icon: ['fas', 'cube'], text: 'Cartera', path: '/wallet' },
+      { icon: ['fas', 'cube'], text: 'Home', path: '/' },
+      { icon: ['fas', 'user'], text: 'Perfil', path: '/perfil' },
     ],
     footerItems: [
-      {
-        href: 'https://www.facebook.com/iamvalentigamez',
-        icon: ['fab', 'facebook'],
-        title: 'Página de Facebook',
-      },
       {
         href: 'https://twitter.com/iamvalentigamez',
         icon: ['fab', 'twitter'],
@@ -169,9 +157,9 @@ export default {
         title: 'Perfil laboral en Linkedin',
       },
       {
-        href: 'https://www.youtube.com/vgrdominik',
+        href: 'https://www.youtube.com/valentigamez',
         icon: ['fab', 'youtube'],
-        title: 'Canal de programación',
+        title: 'Canal de youtube',
       },
     ],
   }),
